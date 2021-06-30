@@ -1,15 +1,21 @@
+# print(max(int(i) for i in number))
+# print(max(i for i in number))
+# print(max(number))
+
 def solution(number, k):
     answer = ''
-    a = dict(zip(range(len(number)), [i for i in number]))
-    #print(a)
+    idx = 0
 
-    sorted(a.items(), key=lambda x: x[1], reverse=True)
+    while k>0:
+        tmpIdx = number[idx: idx+k+1].index(max(number[idx: idx+k+1]))
+        answer += number[idx+tmpIdx]
+        idx += tmpIdx+1
+        k -= tmpIdx
+        if len(number)-idx-1 < k:
+            return answer
 
-    for (k,v) in sorted(a.items(), key=lambda x: x[1], reverse=True):
-
-
+    answer += number[idx:]
     return answer
 
-
-a = solution("4177252841",4)
+a = solution("1111117",5)
 print(a)
